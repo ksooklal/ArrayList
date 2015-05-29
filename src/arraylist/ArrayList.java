@@ -9,32 +9,49 @@ import java.util.RandomAccess;
 
 public class ArrayList<E> implements List<E>, RandomAccess, Cloneable, java.io.Serializable{
 	private static final long serialVersionUID = 87899798L;
-	
-	
-	private E[] innerArray = null;
-	
+
+	final private static int INITIAL_CAPACITY = 50;
+	private Object[] array = new Object[INITIAL_CAPACITY]; 
+	private int size = 0;
 	private LinkedList<Object> list = new LinkedList<Object>();
+	
+	private static enum EMPTY_OBJECT{
+		INSTANCE;
+	}
+	
+	public ArrayList(){
+		reset();
+	}
+	
+	private void reset(){
+		for (int i = 0; i < INITIAL_CAPACITY; i++){
+			array[i] = INITIAL_CAPACITY;
+		}
+		this.size = 0;
+	}
+	
 	
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return size;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return size == 0;
 	}
 
 	@Override
 	public boolean contains(Object o) {
+		if (this.size == 0){
+			return false;
+		}
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public Iterator iterator() {
+	public Iterator<E> iterator() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -46,7 +63,7 @@ public class ArrayList<E> implements List<E>, RandomAccess, Cloneable, java.io.S
 	}
 
 	@Override
-	public Object[] toArray(Object[] a) {
+	public <T> T[] toArray(T[] a) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -95,8 +112,7 @@ public class ArrayList<E> implements List<E>, RandomAccess, Cloneable, java.io.S
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
-		
+		reset(); 
 	}
 
 	@Override
