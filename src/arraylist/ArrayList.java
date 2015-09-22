@@ -2,31 +2,23 @@ package arraylist;
 
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
 
 public class ArrayList<E> implements List<E>, RandomAccess, Cloneable, java.io.Serializable{
-	private static final long serialVersionUID = 87899798L;
+	private static final long serialVersionUID = 234234L;
 
 	final private static int INITIAL_CAPACITY = 50;
-	private Object[] array = new Object[INITIAL_CAPACITY]; 
+	private Object[] array = new Object[INITIAL_CAPACITY];
 	private int size = 0;
-	private LinkedList<Object> list = new LinkedList<Object>();
-	
-	private static enum EMPTY_OBJECT{
-		INSTANCE;
-	}
-	
+
 	public ArrayList(){
 		reset();
 	}
 	
 	private void reset(){
-		for (int i = 0; i < INITIAL_CAPACITY; i++){
-			array[i] = INITIAL_CAPACITY;
-		}
+		array = new Object[INITIAL_CAPACITY];
 		this.size = 0;
 	}
 	
@@ -58,8 +50,11 @@ public class ArrayList<E> implements List<E>, RandomAccess, Cloneable, java.io.S
 
 	@Override
 	public Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
+		Object [] objectArray = new Object[size];
+		for (int i = 0; i < size; i++){
+			objectArray[i] = this.array[i];
+		}
+		return objectArray;
 	}
 
 	@Override
@@ -112,7 +107,8 @@ public class ArrayList<E> implements List<E>, RandomAccess, Cloneable, java.io.S
 
 	@Override
 	public void clear() {
-		reset(); 
+		this.array = new Object[INITIAL_CAPACITY];
+		this.size = 0;
 	}
 
 	@Override
