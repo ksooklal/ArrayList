@@ -33,12 +33,26 @@ public class ArrayListUnitTests {
 
 	@Test
 	public void testSize(){
-	
+		ArrayList<String> list = new ArrayList<String>();
+		
 	}
 
 	@Test
 	public void testEmpty() {
+		ArrayList<String> list = new ArrayList<String>();
+		assertEquals(true, list.isEmpty());
 		
+		list.add("First");
+		assertEquals(false, list.isEmpty());
+		
+		list.remove(0);
+		assertEquals(true, list.isEmpty());
+		
+		list.add(0, "First");
+		assertEquals(false, list.isEmpty());
+		
+		list.clear();
+		assertEquals(true, list.isEmpty());
 	}
 
 	@Test
